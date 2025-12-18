@@ -50,9 +50,9 @@
             <h3>Product Details:</h3>
             <ul>
                 <li><strong>Material:</strong> <span id="productMaterial"></span></li>
-                <li><strong>Available Sizes:</strong> <span id="PRODUCTSizes"></span></li>
+                <li><strong>Available Sizes:</strong> <span id="productsizes"></span></li>
                 <li><strong>Color:</strong> <span id="productColor"></span></li>
-                <li id="styleItem" style="display: none;"><strong>Style:</strong> <span id="PRODUCTStyle"></span></li>
+                <li id="styleItem" style="display: none;"><strong>Style:</strong> <span id="productstyle"></span></li>
                 <li id="designItem" style="display: none;"><strong>Design:</strong> <span id="productDesign"></span></li>
                 <li><strong>Care:</strong> <span id="productCare"></span></li>
             </ul>
@@ -71,9 +71,9 @@
 </section>
 
 <!-- YOU MAY ALSO LIKE SECTION -->
-<section class="related-PRODUCTS">
+<section class="related-products">
     <h2>You May Also Like</h2>
-    <div class="PRODUCTS" id="relatedPRODUCTS"></div>
+    <div class="products" id="relatedproducts"></div>
 </section>
 
 <!-- FOOTER -->
@@ -89,7 +89,7 @@
 </footer>
 
 <script src="cart.js"></script>
-<script src="data/PRODUCTS.js"></script>
+<script src="data/products.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Get product ID from URL
@@ -101,7 +101,7 @@
             return;
         }
 
-        // Get product data from PRODUCTS.js
+        // Get product data from products.js
         const product = getProductById(productId);
 
         if (!product) {
@@ -122,12 +122,12 @@
         document.getElementById('productMaterial').textContent = product.material;
         document.getElementById('productColor').textContent = product.color;
         document.getElementById('productCare').textContent = product.care;
-        document.getElementById('PRODUCTSizes').textContent = product.size.join(', ');
+        document.getElementById('productsizes').textContent = product.size.join(', ');
 
         // Show optional details if they exist
         if (product.style) {
             document.getElementById('styleItem').style.display = 'block';
-            document.getElementById('PRODUCTStyle').textContent = product.style;
+            document.getElementById('productstyle').textContent = product.style;
         }
         if (product.design) {
             document.getElementById('designItem').style.display = 'block';
@@ -150,11 +150,11 @@
             addToCart(product.name, product.price, size, qty);
         });
 
-        // Display related PRODUCTS
-        const relatedContainer = document.getElementById('relatedPRODUCTS');
-        const relatedPRODUCTS = PRODUCTS.filter(p => p.id !== product.id);
+        // Display related products
+        const relatedContainer = document.getElementById('relatedproducts');
+        const relatedproducts = products.filter(p => p.id !== product.id);
 
-        relatedPRODUCTS.forEach(relProduct => {
+        relatedproducts.forEach(relProduct => {
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `

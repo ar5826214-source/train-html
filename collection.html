@@ -40,7 +40,7 @@
 
 <!-- COLLECTION GRID -->
 <section class="collection-section">
-    <div class="PRODUCTS" id="collectionPRODUCTS"></div>
+    <div class="products" id="collectionproducts"></div>
 </section>
 
 <!-- FOOTER -->
@@ -56,13 +56,13 @@
 </footer>
 
 <script src="cart.js"></script>
-<script src="data/PRODUCTS.js"></script>
+<script src="data/products.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const collectionContainer = document.getElementById('collectionPRODUCTS');
+        const collectionContainer = document.getElementById('collectionproducts');
 
-        // Display all PRODUCTS from PRODUCTS.js
-        PRODUCTS.forEach(product => {
+        // Display all products from products.js
+        products.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `

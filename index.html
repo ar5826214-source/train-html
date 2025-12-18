@@ -40,13 +40,13 @@
         <a href="#shop" class="btn">Shop Now</a>
     </section>
 
-    <!-- SHOP / FEATURED PRODUCTS -->
+    <!-- SHOP / FEATURED products -->
     <section id="shop">
         <h2>Trending Now</h2>
         <p>Check out our hottest designs and customer favorites.</p>
         
-        <div class="PRODUCTS" id="PRODUCTS_output">
-            <!-- PRODUCTS will be loaded dynamically by JavaScript -->
+        <div class="products" id="products_output">
+            <!-- products will be loaded dynamically by JavaScript -->
         </div>
     </section>
 
@@ -152,7 +152,7 @@
 
     <!-- JavaScript -->
     <script src="cart.js"></script>
-    <script src="data/PRODUCTS.js"></script>
+    <script src="products.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Smooth scroll animation for sections
@@ -182,11 +182,11 @@
             style.textContent = `.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
             document.head.appendChild(style);
 
-            // Load and display featured PRODUCTS
-            const PRODUCTSOutput = document.getElementById('PRODUCTS_output');
-            const featuredPRODUCTS = PRODUCTS.filter(p => p.isFeatured);
+            // Load and display featured products
+            const productsOutput = document.getElementById('products_output');
+            const featuredproducts = products.filter(p => p.isFeatured);
 
-            featuredPRODUCTS.forEach(product => {
+            featuredproducts.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
@@ -199,7 +199,7 @@
                     </p>
                     <a href="product.html?id=${product.id}" class="btn">View Product</a>
                 `;
-                PRODUCTSOutput.appendChild(card);
+                productsOutput.appendChild(card);
             });
 
             // Pre-fill order form from cart
