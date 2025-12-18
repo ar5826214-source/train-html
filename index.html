@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NYXEN WEARS - Streetwear That Speaks</title>
+    <meta name="description" content="Nyxen Wears - Discover trendy streetwear clothing and custom prints designed just for you. Bold graphics, clean silhouettes, authentic style.">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
+                <img src="IMG1.0.png" alt="Nyxen Wears Logo" class="logo" />
+                <span class="store-name">Nyxen Wears</span>
+            </a>
+        </div>    
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="collection.html">Collection</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <h1>Wear Your Style. Own Your Story</h1>
+        <p>Discover trendy clothing and custom prints designed just for you</p>
+        <a href="#shop" class="btn">Shop Now</a>
+    </section>
+
+    <!-- SHOP / FEATURED PRODUCTS -->
+    <section id="shop">
+        <h2>Trending Now</h2>
+        <p>Check out our hottest designs and customer favorites.</p>
+        
+        <div class="PRODUCTS" id="PRODUCTS_output">
+            <!-- PRODUCTS will be loaded dynamically by JavaScript -->
+        </div>
+    </section>
+
+    <!-- ORDER FORM SECTION -->
+    <section id="orderForm">
+        <h2>Order Now</h2>
+        <form action="https://formspree.io/f/mqargqlv" method="POST" id="mainOrderForm">
+            <input type="text" name="name" id="orderName" placeholder="Your Name" required aria-label="Your Name">
+            <input type="email" name="email" id="orderEmail" placeholder="Your Email" required aria-label="Your Email">
+            <input type="text" name="product" id="orderProduct" placeholder="Product Name" required aria-label="Product Name">
+            <input type="text" name="size" id="orderSize" placeholder="Size (S/M/L/XL)" required aria-label="Size">
+            <input type="number" name="quantity" id="orderQuantity" placeholder="Quantity" min="1" value="1" required aria-label="Quantity">
+            <textarea name="notes" id="orderNotes" placeholder="Additional Notes (optional)" aria-label="Additional Notes"></textarea>
+            <input type="hidden" name="_redirect" value="success.html">
+            <button type="submit">Submit Order</button>
+        </form>
+    </section>
+
+    <!-- CUSTOMER REVIEWS -->
+    <section class="reviews-section">
+        <h2>What Our Customers Say</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <p class="review-text">"The Batman hoodie is insanely sharp! Everyone keeps asking where I got it."</p>
+                <span class="reviewer">- Ali R.</span>
+            </div>
+            <div class="review-card">
+                <p class="review-text">"The meme hoodie made me laugh every time I wear it. Quality is on point."</p>
+                <span class="reviewer">- Sara K.</span>
+            </div>
+            <div class="review-card">
+                <p class="review-text">"Tattoo-inspired hoodie is fire. Got so many compliments at the gym."</p>
+                <span class="reviewer">- Hamza L.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section dark-about">
+        <div class="about-wrapper">
+            <div class="about-left">
+                <h2 class="about-title">About Nyxen Wears</h2>
+                <p class="about-desc">
+                    Born from late-night creativity and real street culture, Nyxen Wears is a small
+                    independent brand crafting pieces that hit different. Every hoodie, every design,
+                    every print is made for people who move quiet but stand out loud.
+                </p>
+                <p class="about-desc">
+                    We don't chase trends. We make statements. Clean silhouettes, bold graphics,
+                    and that subtle aggression only real drip knows how to carry.
+                </p>
+                <p class="about-desc">
+                    Minimal. Modern. Authentic. That's the core of Nyxen Wears.
+                    Your style should feel like you – effortless and undeniable.
+                </p>
+            </div>
+
+            <div class="about-right">
+                <div class="about-img-frame">
+                    <img src="IMG1.0.png" alt="Nyxen Wears Brand Identity" loading="lazy" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <div class="contact-wrapper">
+            <div class="contact-left">
+                <h2 class="about-title">Get In Touch</h2>
+                <p class="about-desc">
+                    Questions, custom orders, or ideas you want to bring to life? Hit us up and 
+                    we'll make it happen. Nyxen Wears is all about keeping it real and making 
+                    your style effortless.
+                </p>
+                <p class="about-desc"><strong>Email:</strong> nyxenwears@gmail.com</p>
+                <p class="about-desc"><strong>Phone:</strong> +92 327 295 7877</p>
+                <p class="about-desc"><strong>Location:</strong> Karachi, Pakistan</p>
+            </div>
+
+            <div class="contact-right">
+                <form class="contact-form" action="https://formspree.io/f/mqargqlv" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" />
+                    <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" />
+                    <textarea name="message" placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="dark-footer">
+        <p>&copy; 2025 Nyxen Wears. All rights reserved.</p>
+        <div class="social">
+            <a href="#" aria-label="Visit our Facebook page">Facebook</a>
+            <a href="#" aria-label="Visit our Instagram page">Instagram</a>
+            <a href="#" aria-label="Visit our Twitter page">Twitter</a>
+            <a href="#" aria-label="Visit our TikTok page">TikTok</a>
+            <a href="#" aria-label="Visit our Pinterest page">Pinterest</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="cart.js"></script>
+    <script src="data/PRODUCTS.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll animation for sections
+            const sections = document.querySelectorAll('.about-section, .contact-section, .dark-footer, .reviews-section');
+
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            const style = document.createElement('style');
+            style.textContent = `.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
+            document.head.appendChild(style);
+
+            // Load and display featured PRODUCTS
+            const PRODUCTSOutput = document.getElementById('PRODUCTS_output');
+            const featuredPRODUCTS = PRODUCTS.filter(p => p.isFeatured);
+
+            featuredPRODUCTS.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${product.imageFront}" alt="${product.name} Front View" loading="lazy" />
+                    <img src="${product.imageBack}" alt="${product.name} Back View" loading="lazy" />
+                    <h3>${product.name}</h3>
+                    <p class="price">PKR ${product.price}</p>
+                    <p class="desc">
+                        ${product.description.substring(0, 100)}...
+                    </p>
+                    <a href="product.html?id=${product.id}" class="btn">View Product</a>
+                `;
+                PRODUCTSOutput.appendChild(card);
+            });
+
+            // Pre-fill order form from cart
+            const cartOrder = localStorage.getItem('cartOrder');
+            if (cartOrder) {
+                try {
+                    const items = JSON.parse(cartOrder);
+                    const productInput = document.getElementById('orderProduct');
+                    const notesInput = document.getElementById('orderNotes');
+                    
+                    productInput.value = 'Multiple Items from Cart';
+                    notesInput.value = items.map(item =>
+                        `${item.name} | Size: ${item.size} | Qty: ${item.qty}`
+                    ).join('\n');
+                    
+                    localStorage.removeItem('cartOrder');
+                } catch (e) {
+                    console.error('Error parsing cart order:', e);
+                }
+            }
+            
+            // Scroll to form if hash present
+            if (window.location.hash === '#orderForm') {
+                setTimeout(() => {
+                    const orderForm = document.querySelector('#orderForm');
+                    if (orderForm) {
+                        orderForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 100);
+            }
+
+            // Form submission feedback
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const button = this.querySelector('button[type="submit"]');
+                    const originalText = button.textContent;
+                    button.textContent = 'Sending...';
+                    button.disabled = true;
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                    }, 3000);
+                });
+            });
+
+            // Update cart count
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

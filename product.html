@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Product - Nyxen Wears</title>
+    <meta name="description" id="pageDesc" content="Nyxen Wears Product">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo-container">
+        <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
+            <img src="IMG1.0.png" alt="Nyxen Wears Logo" class="logo">
+            <span class="store-name">Nyxen Wears</span>
+        </a>
+    </div>
+    <nav aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#shop">Shop</a></li>
+            <li><a href="collection.html">Collection</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- PRODUCT SECTION -->
+<section class="product-page">
+    <div class="product-image">
+        <img id="productImageFront" src="" alt="Product Front View" loading="lazy">
+        <img id="productImageBack" src="" alt="Product Back View" loading="lazy">
+    </div>
+
+    <div class="product-info">
+        <h1 id="productName"></h1>
+        <p class="price" id="productPrice"></p>
+        <p class="desc" id="productDesc"></p>
+        
+        <!-- Product Details -->
+        <div class="product-details">
+            <h3>Product Details:</h3>
+            <ul>
+                <li><strong>Material:</strong> <span id="productMaterial"></span></li>
+                <li><strong>Available Sizes:</strong> <span id="PRODUCTSizes"></span></li>
+                <li><strong>Color:</strong> <span id="productColor"></span></li>
+                <li id="styleItem" style="display: none;"><strong>Style:</strong> <span id="PRODUCTStyle"></span></li>
+                <li id="designItem" style="display: none;"><strong>Design:</strong> <span id="productDesign"></span></li>
+                <li><strong>Care:</strong> <span id="productCare"></span></li>
+            </ul>
+        </div>
+
+        <div class="product-controls">
+            <select id="sizeSelect" class="size-select">
+                <option value="">Select Size</option>
+            </select>
+
+            <input type="number" id="qtyInput" class="qty-input" value="1" min="1" max="10">
+
+            <button class="btn" id="addToCartBtn">Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<!-- YOU MAY ALSO LIKE SECTION -->
+<section class="related-PRODUCTS">
+    <h2>You May Also Like</h2>
+    <div class="PRODUCTS" id="relatedPRODUCTS"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="dark-footer">
+    <p>&copy; 2025 Nyxen Wears. All rights reserved.</p>
+    <div class="social">
+        <a href="#" aria-label="Visit our Facebook page">Facebook</a>
+        <a href="#" aria-label="Visit our Instagram page">Instagram</a>
+        <a href="#" aria-label="Visit our Twitter page">Twitter</a>
+        <a href="#" aria-label="Visit our TikTok page">TikTok</a>
+        <a href="#" aria-label="Visit our Pinterest page">Pinterest</a>
+    </div>
+</footer>
+
+<script src="cart.js"></script>
+<script src="data/PRODUCTS.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        if (!productId) {
+            document.querySelector('.product-page').innerHTML = '<p style="text-align: center; padding: 40px; color: #aaa;">Product not found. Please go back to shop.</p>';
+            return;
+        }
+
+        // Get product data from PRODUCTS.js
+        const product = getProductById(productId);
+
+        if (!product) {
+            document.querySelector('.product-page').innerHTML = '<p style="text-align: center; padding: 40px; color: #aaa;">Product not found.</p>';
+            return;
+        }
+
+        // Update page title and meta
+        document.getElementById('pageTitle').textContent = `${product.name} - Nyxen Wears`;
+        document.getElementById('pageDesc').textContent = product.description;
+
+        // Populate product information
+        document.getElementById('productName').textContent = product.name;
+        document.getElementById('productPrice').textContent = `PKR ${product.price}`;
+        document.getElementById('productDesc').textContent = product.description;
+        document.getElementById('productImageFront').src = product.imageFront;
+        document.getElementById('productImageBack').src = product.imageBack;
+        document.getElementById('productMaterial').textContent = product.material;
+        document.getElementById('productColor').textContent = product.color;
+        document.getElementById('productCare').textContent = product.care;
+        document.getElementById('PRODUCTSizes').textContent = product.size.join(', ');
+
+        // Show optional details if they exist
+        if (product.style) {
+            document.getElementById('styleItem').style.display = 'block';
+            document.getElementById('PRODUCTStyle').textContent = product.style;
+        }
+        if (product.design) {
+            document.getElementById('designItem').style.display = 'block';
+            document.getElementById('productDesign').textContent = product.design;
+        }
+
+        // Populate size dropdown
+        const sizeSelect = document.getElementById('sizeSelect');
+        product.size.forEach(size => {
+            const option = document.createElement('option');
+            option.value = size;
+            option.textContent = size;
+            sizeSelect.appendChild(option);
+        });
+
+        // Handle Add to Cart button
+        document.getElementById('addToCartBtn').addEventListener('click', function() {
+            const size = document.getElementById('sizeSelect').value;
+            const qty = document.getElementById('qtyInput').value;
+            addToCart(product.name, product.price, size, qty);
+        });
+
+        // Display related PRODUCTS
+        const relatedContainer = document.getElementById('relatedPRODUCTS');
+        const relatedPRODUCTS = PRODUCTS.filter(p => p.id !== product.id);
+
+        relatedPRODUCTS.forEach(relProduct => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${relProduct.imageFront}" alt="${relProduct.name} Front" loading="lazy">
+                <img src="${relProduct.imageBack}" alt="${relProduct.name} Back" loading="lazy">
+                <h3>${relProduct.name}</h3>
+                <p class="price">PKR ${relProduct.price}</p>
+                <a href="product.html?id=${relProduct.id}" class="btn">View Product</a>
+            `;
+            relatedContainer.appendChild(card);
+        });
+
+        updateCartCount();
+    });
+</script>
+
+</body>
+</html>
