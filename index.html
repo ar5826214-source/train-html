@@ -184,7 +184,7 @@
 
             // Load and display featured products
             const productsOutput = document.getElementById('products_output');
-            const featuredproducts = products.filter(p => p.isFeatured);
+            const featuredproducts = getFeaturedPRODUCTS();
 
             featuredproducts.forEach(product => {
                 const card = document.createElement('div');

@@ -1,7 +1,7 @@
 // NYXEN WEARS - PRODUCTS Database
 // This file contains all product information used across the website
 
-const PRODUCTS = [
+const products = [
   {
     id: 0,
     name: 'BATMAN Hoodie',
@@ -51,23 +51,23 @@ const PRODUCTS = [
 
 // Helper function to get product by ID
 function getProductById(id) {
-  return PRODUCTS.find(product => product.id === parseInt(id));
+  return products.find(product => product.id === parseInt(id));
 }
 
 // Helper function to get featured PRODUCTS
 function getFeaturedPRODUCTS() {
-  return PRODUCTS.filter(product => product.isFeatured);
+  return products.filter(product => product.isFeatured);
 }
 
 // Helper function to get PRODUCTS by category
 function getPRODUCTSByCategory(category) {
-  return PRODUCTS.filter(product => product.category === category);
+  return products.filter(product => product.category === category);
 }
 
 // Helper function to search PRODUCTS
 function searchPRODUCTS(query) {
   const search = query.toLowerCase();
-  return PRODUCTS.filter(product =>
+  return products.filter(product =>
     product.name.toLowerCase().includes(search) ||
     product.description.toLowerCase().includes(search)
   );

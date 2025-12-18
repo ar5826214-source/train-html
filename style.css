@@ -278,7 +278,7 @@ section p {
 }
 
 /* ===== PRODUCT SECTION ===== */
-.PRODUCTS {
+.products {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
@@ -382,7 +382,7 @@ section p {
 }
 
 @media (max-width: 768px) {
-    .PRODUCTS {
+    .products {
         flex-direction: column;
         gap: 20px;
         align-items: center;
@@ -534,7 +534,7 @@ section p {
 }
 
 /* ===== RELATED PRODUCTS ===== */
-.related-PRODUCTS {
+.related-products {
     background-color: #0f0f0f;
     padding: 80px 10%;
 }
