@@ -20,18 +20,24 @@
             <span class="store-name">Nyxen Wears</span>
         </a>
     </div>
-    <nav aria-label="Main navigation">
+    
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <nav aria-label="Main navigation" id="nav-menu">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#shop">Shop</a></li>
-            <li><a href="collection.html" class="active">Collection</a></li>
-            <li><a href="index.html#about">About Us</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="collection.html">Collection</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
         </ul>
     </nav>
 </header>
-
 <!-- COLLECTION HERO -->
 <section class="collection-hero">
     <h1>The Collection</h1>
@@ -79,6 +85,32 @@
         updateCartCount();
     });
 </script>
+<script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
 
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('header')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+</script>
 </body>
+
 </html>
