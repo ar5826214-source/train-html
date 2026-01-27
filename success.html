@@ -1,3 +1,179 @@
-<h1>Order Received</h1>
-<p>We’ll contact you shortly to confirm.</p>
-<a href="index.html" class="btn">Back to Home</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - Thank You | Nyxen Wears</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .success-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        .success-container {
+            max-width: 600px;
+            text-align: center;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(255, 64, 129, 0.2);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3rem;
+            animation: successPop 0.6s ease;
+        }
+        @keyframes successPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .success-container h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .success-container p {
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .order-id {
+            background: rgba(255, 64, 129, 0.1);
+            border: 1px solid rgba(255, 64, 129, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 25px 0;
+            color: #ff4081;
+            font-weight: 600;
+        }
+        .next-steps {
+            text-align: left;
+            background: rgba(76, 175, 80, 0.05);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+        .next-steps h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+        .next-steps li {
+            padding: 8px 0;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #ff4081 0%, #ff6b9d 100%);
+            color: #fff;
+        }
+        .btn-secondary {
+            background: #2a2a2a;
+            color: #fff;
+            border: 1px solid #444;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 64, 129, 0.4);
+        }
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 40px 25px;
+            }
+            .success-container h1 {
+                font-size: 1.5rem;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="success-section">
+        <div class="success-container">
+            <div class="success-icon">✓</div>
+            <h1>Order Confirmed!</h1>
+            <p>Thank you for your purchase. Your order has been successfully placed and is being processed.</p>
+            
+            <div class="order-id" id="orderIdDisplay">
+                Order ID: #NYX123456789
+            </div>
+            
+            <div class="next-steps">
+                <h3>What's Next?</h3>
+                <ul>
+                    <li>📧 Confirmation email sent to your inbox</li>
+                    <li>📦 Order will be processed within 24 hours</li>
+                    <li>🚚 Estimated delivery: 3-5 business days</li>
+                    <li>📱 We'll send tracking details via WhatsApp</li>
+                </ul>
+            </div>
+            
+            <p style="color: #888; font-size: 0.9rem;">
+                Questions? Contact us at <strong style="color: #ff4081;">nyxenwears@gmail.com</strong><br>
+                or call <strong style="color: #ff4081;">+92 327 295 7877</strong>
+            </p>
+            
+            <div class="btn-group">
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+                <a href="collection.html" class="btn btn-secondary">Continue Shopping</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Display order ID if available
+        const lastOrder = localStorage.getItem('lastOrder');
+        if (lastOrder) {
+            try {
+                const orderData = JSON.parse(lastOrder);
+                document.getElementById('orderIdDisplay').textContent = `Order ID: #${orderData.orderId}`;
+            } catch (e) {
+                console.error('Error parsing order data');
+            }
+        }
+    </script>
+</body>
+</html>
