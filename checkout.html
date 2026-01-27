@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Nyxen Wears | Secure Payment</title>
+    <meta name="description" content="Complete your order securely with multiple payment options including Credit/Debit Cards, PayPal, and Cash on Delivery">
+    <meta name="keywords" content="checkout, payment, credit card, visa, mastercard, paypal, online shopping, streetwear">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo-container">
+        <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
+            <img src="IMG1.0.png" alt="Nyxen Wears Logo" class="logo" />
+            <span class="store-name">Nyxen Wears</span>
+        </a>
+    </div>
+    
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <nav aria-label="Main navigation" id="nav-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#shop">Shop</a></li>
+            <li><a href="collection.html">Collection</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- CHECKOUT SECTION -->
+<section class="checkout-section">
+    <div class="checkout-container">
+        
+        <!-- Progress Bar -->
+        <div class="checkout-progress">
+            <div class="progress-step active">
+                <span class="step-number">1</span>
+                <span class="step-label">Cart</span>
+            </div>
+            <div class="progress-line active"></div>
+            <div class="progress-step active">
+                <span class="step-number">2</span>
+                <span class="step-label">Checkout</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <span class="step-number">3</span>
+                <span class="step-label">Complete</span>
+            </div>
+        </div>
+
+        <h1>Secure Checkout</h1>
+
+        <div class="checkout-layout">
+            
+            <!-- Left Side: Forms -->
+            <div class="checkout-left">
+                
+                <!-- Shipping Information -->
+                <div class="checkout-card">
+                    <h2>📦 Shipping Information</h2>
+                    <form id="shippingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+92 3XX XXXXXXX" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Street Address *</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="postalCode">Postal Code *</label>
+                                <input type="text" id="postalCode" name="postalCode" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Order Notes (Optional)</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Any special instructions for delivery?"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Payment Method Selection -->
+                <div class="checkout-card">
+                    <h2>💳 Payment Method</h2>
+                    <div class="payment-methods">
+                        
+                        <!-- Credit/Debit Card -->
+                        <div class="payment-option" data-method="card">
+                            <input type="radio" id="paymentCard" name="paymentMethod" value="card" checked>
+                            <label for="paymentCard">
+                                <div class="payment-option-content">
+                                    <div class="payment-icons">
+                                        <span class="payment-title">Credit/Debit Card</span>
+                                        <div class="card-logos">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" style="height: 20px;">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 20px;">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex" style="height: 20px;">
+                                        </div>
+                                    </div>
+                                    <p class="payment-desc">Pay securely with your card via Stripe</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- PayPal -->
+                        <div class="payment-option" data-method="paypal">
+                            <input type="radio" id="paymentPaypal" name="paymentMethod" value="paypal">
+                            <label for="paymentPaypal">
+                                <div class="payment-option-content">
+                                    <div class="payment-icons">
+                                        <span class="payment-title">PayPal</span>
+                                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" style="height: 23px;">
+                                    </div>
+                                    <p class="payment-desc">Fast & secure PayPal checkout</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Cash on Delivery -->
+                        <div class="payment-option" data-method="cod">
+                            <input type="radio" id="paymentCod" name="paymentMethod" value="cod">
+                            <label for="paymentCod">
+                                <div class="payment-option-content">
+                                    <div class="payment-icons">
+                                        <span class="payment-title">Cash on Delivery</span>
+                                        <span style="font-size: 1.5rem;">💵</span>
+                                    </div>
+                                    <p class="payment-desc">Pay when you receive your order</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Card Payment Form (Stripe) -->
+                    <div id="cardPaymentForm" class="payment-form active">
+                        <h3>Card Details</h3>
+                        <div class="form-group">
+                            <label for="card-element">Card Information</label>
+                            <div id="card-element" class="stripe-element">
+                                <!-- Stripe Card Element will be inserted here -->
+                            </div>
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                        <p class="secure-notice">🔒 Your payment information is encrypted and secure</p>
+                    </div>
+
+                    <!-- PayPal Button -->
+                    <div id="paypalPaymentForm" class="payment-form">
+                        <div id="paypal-button-container"></div>
+                        <p class="secure-notice">🔒 You'll be redirected to PayPal to complete payment</p>
+                    </div>
+
+                    <!-- Cash on Delivery Info -->
+                    <div id="codPaymentForm" class="payment-form">
+                        <div class="cod-info">
+                            <p>✅ Your order will be confirmed and shipped</p>
+                            <p>💵 Pay in cash when the delivery arrives</p>
+                            <p>📍 Available in Karachi and major cities</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Order Button -->
+                <button type="button" class="btn-place-order" id="placeOrderBtn">
+                    <span>Place Order</span>
+                    <span class="order-total-btn"></span>
+                </button>
+
+            </div>
+
+            <!-- Right Side: Order Summary -->
+            <div class="checkout-right">
+                <div class="checkout-card order-summary">
+                    <h2>Order Summary</h2>
+                    <div id="orderItems"></div>
+                    
+                    <div class="summary-divider"></div>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="summarySubtotal">PKR 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="summaryShipping">PKR 250</span>
+                    </div>
+                    <div class="summary-row discount" id="discountRow" style="display: none;">
+                        <span>Discount</span>
+                        <span id="summaryDiscount">- PKR 0</span>
+                    </div>
+                    
+                    <div class="summary-divider"></div>
+                    
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="summaryTotal">PKR 0</span>
+                    </div>
+                    
+                    <div class="promo-code">
+                        <input type="text" id="promoInput" placeholder="Enter promo code">
+                        <button type="button" id="applyPromoBtn">Apply</button>
+                    </div>
+                    
+                    <div class="trust-badges">
+                        <div class="badge">🔒 Secure Payment</div>
+                        <div class="badge">✅ Money Back Guarantee</div>
+                        <div class="badge">🚚 Fast Delivery</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="dark-footer">
+    <p>&copy; 2025 Nyxen Wears. All rights reserved.</p>
+    <div class="social">
+        <a href="#" aria-label="Visit our Facebook page">Facebook</a>
+        <a href="#" aria-label="Visit our Instagram page">Instagram</a>
+        <a href="#" aria-label="Visit our Twitter page">Twitter</a>
+        <a href="#" aria-label="Visit our TikTok page">TikTok</a>
+        <a href="#" aria-label="Visit our Pinterest page">Pinterest</a>
+    </div>
+</footer>
+
+<script src="cart.js"></script>
+<script src="checkout.js"></script>
+<script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('header')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>
