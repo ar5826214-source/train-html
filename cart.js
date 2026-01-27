@@ -117,7 +117,7 @@ function proceedToCheckout() {
   }
 
   localStorage.setItem('cartOrder', JSON.stringify(cart));
-  window.location.href = 'index.html#orderForm';
+  window.location.href = 'checkout.html';
 }
 
 // Initialize on page load
